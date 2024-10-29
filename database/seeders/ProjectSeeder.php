@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 
 // Models 
 use App\Models\Project;
+use App\Models\Type;
 
 class ProjectSeeder extends Seeder
 {
@@ -20,6 +21,9 @@ class ProjectSeeder extends Seeder
         for ($i=0; $i < 15; $i++) { 
             $name = fake()->words(3, true);
             $slug = str()->slug($name);
+
+            $randomType = Type::inRandomOrder()->first();
+
             Project::create([
                 'name' => $name,
                 'slug' => $slug,
@@ -27,6 +31,7 @@ class ProjectSeeder extends Seeder
                 'delivery_time' => rand(1,110),
                 'price' => fake()->randomFloat(2, 1 , 99999),
                 'complete' => fake()->boolean(80),
+                'type_id' => $randomType->id
             ]);
         }
     }
