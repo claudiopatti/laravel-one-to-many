@@ -17,4 +17,10 @@ class Project extends Model
         'price',
         'complete',
     ];
+
+    // Relationships
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
 }

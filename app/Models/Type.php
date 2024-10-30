@@ -13,4 +13,10 @@ class Type extends Model
         'name',
         'slug',
     ];
+
+    // Relationships
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }
