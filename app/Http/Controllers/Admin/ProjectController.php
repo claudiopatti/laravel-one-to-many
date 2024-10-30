@@ -39,7 +39,7 @@ class ProjectController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|min:3|max:128',
-            'description' => 'required|min:3|max:128',
+            'description' => 'required|min:3|max:4096',
             'delivery_time' => 'nullable|min:0|max:2000',
             'price' => 'nullable|decimal:2|min:0|max:99999',
             'complete' => 'nullable|in:1,0,true,false',
@@ -67,7 +67,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit',  compact('project'));
+        $types = Type::get();
+
+        return view('admin.projects.edit',  compact('project', 'types'));
 
     }
 
@@ -78,10 +80,12 @@ class ProjectController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|min:3|max:128',
-            'description' => 'required|min:3|max:128',
+            'description' => 'required|min:3|max:4096',
             'delivery_time' => 'nullable|min:0|max:2000',
             'price' => 'nullable|decimal:2|min:0|max:99999',
             'complete' => 'nullable|in:1,0,true,false',
+            'type_id' => 'nullable|exists:types,id',
+
         ]);
 
         $data['slug'] = str()->slug($data['name']);

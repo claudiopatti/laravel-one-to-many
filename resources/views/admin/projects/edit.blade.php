@@ -54,9 +54,27 @@
                             <input type="number" class="form-control" id="price" name="price" min="0" step="0.01" value="{{ old('price', $project->price) }}">
                         </div>
 
+                        <div class="mb-3">
+                            <label for="type_id" class="form-label">Tipo</label>
+                            <select id="type_id" name="type_id" class="form-select">
+                                <option
+                                    @if (old('type_id', $project->type_id) == null)
+                                        selected
+                                    @endif 
+                                    value="">Seleziona il Tipo</option>
+                                @foreach ($types as $type)
+                                    <option 
+                                    @if (old('type_id', $project->type_id) == $type->id)
+                                        selected
+                                    @endif 
+                                    value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" value="1" id="complete" name="complete"
-                                @if (old('complete', $project->complete != null))
+                                @if (old('complete', $project->complete) != null)
                                     checked
                                 @endif
                             >
