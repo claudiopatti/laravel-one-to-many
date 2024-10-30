@@ -35,6 +35,24 @@
                         <li>
                             Slug: {{ $type->slug }}
                         </li>
+                        <li>
+                            Tipi collegati:
+
+                            @if ($type->projects()->count() > 0)
+                                <ul>
+                                    @foreach ($type->projects as $project)
+                                        <li>
+                                            <a href="{{ route('admin.projects.show', ['project' => $project->id]) }}">
+                                                {{ $project->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>                                
+                            @else
+                                -
+                            @endif
+
+                        </li>
                     </ul>
 
 

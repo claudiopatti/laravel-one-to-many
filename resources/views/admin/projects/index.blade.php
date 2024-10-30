@@ -30,6 +30,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nome</th>
+                                <th scope="col">Tipo</th>
                                 <th scope="col">Descrizione</th>
                                 <th scope="col">Completato</th>
                                 <th scope="col">Gestione</th>
@@ -40,6 +41,15 @@
                                 <tr>
                                     <th scope="row">{{ $project->id }}</th>
                                     <td>{{ $project->name }}</td>
+                                    <td>
+                                        @if (isset($project->type))
+                                            <a href="{{ route('admin.types.show', ['type' => $project->type_id]) }}">
+                                                {{ $project->type->name }}
+                                            </a>
+                                        @else
+                                            -
+                                        @endif
+                                    </td>
                                     <td>{{ $project->description }}</td>
                                     <td>{{ $project->complete ? 'Si' : 'No' }}</td>
                                     <td class="text-center d-flex ">

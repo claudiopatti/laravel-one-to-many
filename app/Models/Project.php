@@ -16,6 +16,7 @@ class Project extends Model
         'delivery_time',
         'price',
         'complete',
+        'type_id',
     ];
 
     // Relationships

@@ -44,6 +44,17 @@
                         <li>
                             Completato: {{ $project->complete ? 'Si' : 'No' }}
                         </li>
+                        <li>
+                            Tipo collegato:
+
+                            @if (isset($project->type))
+                                <a href="{{ route('admin.types.show', ['type' => $project->type_id]) }}">
+                                    {{ $project->type->name }}
+                                </a>
+                            @else
+                                -
+                            @endif
+                        </li>
                     </ul>
 
 

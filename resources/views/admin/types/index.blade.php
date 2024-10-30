@@ -29,8 +29,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Gestione</th>
+                                <th scope="col" >Nome</th>
+                                <th scope="col" class="text-center "># Progetti collegati</th>
+                                <th scope="col" class="text-center">Gestione</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,12 +39,12 @@
                                 <tr>
                                     <th scope="row">{{ $type->id }}</th>
                                     <td>{{ $type->name }}</td>
-                                    <td>{{ $type->description }}</td>
-                                    <td>{{ $type->complete ? 'Si' : 'No' }}</td>
-                                    <td class="text-center d-flex ">
+                                    <td class="text-center ">{{ count($type->projects) }}</td>
+                                    <td class="d-flex justify-content-center ">
                                         <a href="{{ route('admin.types.show',[ 'type' => $type->id]) }}" class="btn btn-primary mx-2">
                                             Guarda
-                                        </a><a href="{{ route('admin.types.edit',[ 'type' => $type->id]) }}" class="btn btn-warning mx-2">
+                                        </a>
+                                        <a href="{{ route('admin.types.edit',[ 'type' => $type->id]) }}" class="btn btn-warning mx-2">
                                             Modifica
                                         </a>
                                         <form action="{{ route('admin.types.destroy', ['type'=> $type->id]) }}" method="POST"
